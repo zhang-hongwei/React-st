@@ -172,6 +172,7 @@ export function createElement(type, config, children) {
   let propName;
 
   // Reserved names are extracted
+  // 提取ref和key以外的属性
   const props = {};
 
   let key = null;
@@ -190,6 +191,7 @@ export function createElement(type, config, children) {
     self = config.__self === undefined ? null : config.__self;
     source = config.__source === undefined ? null : config.__source;
     // Remaining properties are added to a new props object
+    // 提取除了RESERVED_PROPS中不存在的属性到props
     for (propName in config) {
       if (
         hasOwnProperty.call(config, propName) &&
@@ -202,6 +204,7 @@ export function createElement(type, config, children) {
 
   // Children can be more than one argument, and those are transferred onto
   // the newly allocated props object.
+  // 从第三个参数开始，都是children元素，可以为1到多个
   const childrenLength = arguments.length - 2;
   if (childrenLength === 1) {
     props.children = children;
@@ -219,6 +222,9 @@ export function createElement(type, config, children) {
   }
 
   // Resolve default props
+  // type 可以为组件，当class组件的时候，可以存在defaultProps,如果子组件存在defaultProps,
+  // 需要先判断当前props中是否存在如果子组件存在defaultProps中存在的属性，不存在的，需要从
+  // defaultProps中取值给props
   if (type && type.defaultProps) {
     const defaultProps = type.defaultProps;
     for (propName in defaultProps) {
