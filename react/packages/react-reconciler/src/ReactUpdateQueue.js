@@ -172,7 +172,8 @@ function cloneUpdateQueue<State>(
     firstUpdate: currentQueue.firstUpdate,
     lastUpdate: currentQueue.lastUpdate,
 
-    // TODO: With resuming, if we bail out and resuse the child tree, we should
+    // TODO: With resuming, if we bail out
+    //  and resuse the child tree, we should
     // keep these effects.
     firstCapturedUpdate: null,
     lastCapturedUpdate: null,

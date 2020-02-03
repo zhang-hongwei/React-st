@@ -259,16 +259,6 @@ function FiberNode(
     this.selfBaseDuration = 0;
     this.treeBaseDuration = 0;
   }
-
-  if (__DEV__) {
-    this._debugID = debugCounter++;
-    this._debugSource = null;
-    this._debugOwner = null;
-    this._debugIsCurrentlyTiming = false;
-    if (!hasBadMapPolyfill && typeof Object.preventExtensions === 'function') {
-      Object.preventExtensions(this);
-    }
-  }
 }
 
 // This is a constructor function, rather than a POJO constructor, still
